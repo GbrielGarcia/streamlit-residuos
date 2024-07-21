@@ -1,6 +1,10 @@
 import pandas as pd
+# Divide el conjunto de datos en dos partes ( entrenamiento y prueba )
 from sklearn.model_selection import train_test_split
+# Implementa el algoritmo de regresión lineal [ predicion continua en base a una entrada]
 from sklearn.linear_model import LinearRegression
+# Calcula el error cuadratico medio (MSE) entre las predicciones del modelo y los valores reales.
+# [ El MSE mide la diferencia promedio al cuadrado entre las predicciones y los valores verdaderos ]
 from sklearn.metrics import mean_squared_error
 import pickle
 

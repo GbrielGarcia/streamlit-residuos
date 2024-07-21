@@ -116,6 +116,9 @@ Hecho por:
 
 Tecnologias Utilizada:
 - Streamlit ( UI, Despliegue )
-- Regresión Lineal ( Modelo Machine Learning )
-- Pandas ( Menajar y Procesar datos aleatorios )
+- Regresión Lineal [ sklearn ] ( Modelo Machine Learning )
+- Pandas ( Menajar y Procesar datos )
+- Numpy ( Genera datos aleatorios )
+- IO ( Flujo de entrada y salida )
+- OS ( Menejo del sistema operativo )
 """)
