@@ -33,10 +33,6 @@ with tab2:
 # Markdown Pie de página
 st.markdown("""
 ---
-Hecho por:
-- Roxana Mabel Toala Torres
-- María Fernanda Dueñas Murillo
-
 Tecnologías Utilizadas:
 - Streamlit (UI, Despliegue)
 - Regresión Lineal [sklearn] (Modelo Machine Learning)
