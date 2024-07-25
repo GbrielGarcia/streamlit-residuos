@@ -123,8 +123,8 @@ with tab3:
 # Markdown Pie de página
 st.markdown("""
 Realizado por:
-Maria Fernanda Dueñas Murillo
-Roxana Mabel Toala Torres
+- Maria Fernanda Dueñas Murillo
+- Roxana Mabel Toala Torres
 ---
 Tecnologías Utilizadas:
 - Streamlit (UI, Despliegue)
