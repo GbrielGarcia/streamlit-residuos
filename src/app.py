@@ -13,7 +13,7 @@ def run_app(num_samples):
     model, mse = train_model(data)
 
     # Preparando los datos para las predicciones
-    X = data[['dia_semana', 'hora', 'temperatura']]
+    X = data[['dia_semana', 'hora', 'temperatura', 'latitud', 'longitud']]
     y_actual = data['residuos']
     y_pred = model.predict(X)
 

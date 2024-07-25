@@ -2,7 +2,6 @@ import os
 import pandas as pd
 import streamlit as st
 
-
 def show_saved_data():
     # Usar ruta absoluta
     processed_data_dir = os.path.join(os.path.dirname(__file__), '../data/processed')
@@ -30,19 +29,14 @@ def show_saved_data():
         # Leer el archivo CSV en un DataFrame de pandas
         data = pd.read_csv(os.path.join(processed_data_dir, file))
 
-        # Crear dos columnas en la interfaz de usuario de Streamlit
-        col1, col2 = st.columns(2)
+        # Mostrar el nombre del archivo y el DataFrame en la interfaz de usuario de Streamlit
+        st.subheader(f'Datos del archivo: {file}')
+        st.write(f'**{file}**')  # Mostrar el nombre del archivo en negrita
+        st.dataframe(data)  # Mostrar el DataFrame en la interfaz
 
-        # Mostrar el contenido del archivo CSV en la primera columna
-        with col1:
-            st.write(f'**{file}**')  # Mostrar el nombre del archivo en negrita
-            st.dataframe(data)  # Mostrar el DataFrame en la interfaz
-
-        # Mostrar un gráfico en la segunda columna, si existe la columna 'Predicción'
-        with col2:
-            if 'Predicción' in data.columns:
-                st.write('Resultados')  # Título para la sección de gráficos
-                st.line_chart(data[['residuos', 'Predicción']])  # Mostrar gráfico de residuos vs. predicción
-            else:
-                st.write(
-                    "La columna 'Predicción' no se encontró en los datos.")  # Mensaje si no hay columna 'Predicción'
+        # Mostrar un gráfico, si existe la columna 'Predicción'
+        if 'Predicción' in data.columns:
+            st.write('Resultados')
+            st.line_chart(data[['residuos', 'Predicción']])
+        else:
+            st.write("La columna 'Predicción' no se encontró en los datos.")
