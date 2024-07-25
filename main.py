@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 import matplotlib.colors as mcolors
+import pydeck as pdk
 from src.app import run_app, save_generated_data
 from src.save import show_saved_data
 
@@ -81,10 +82,40 @@ with tab3:
             # Crear un DataFrame con los colores de los clusters
             cluster_colors = plt.get_cmap('viridis')(np.linspace(0, 1, num_clusters))
             data['color'] = data['Cluster'].apply(lambda x: mcolors.to_hex(cluster_colors[x]))
-            data['size'] = 20  # Incrementar el tamaño de los puntos
+            data['color_rgb'] = data['color'].apply(lambda x: [int(255 * c) for c in mcolors.hex2color(x)])
+            data['size'] = 50  # Incrementar el tamaño de los puntos
 
-            # Mostrar el mapa en Streamlit
+            # Mostrar el mapa en Streamlit con pydeck
             st.subheader("Mapa de los Datos y Clústeres")
-            st.map(data, latitude='latitud', longitude='longitud', color='color', size='size')
+            layer = pdk.Layer(
+                'ScatterplotLayer',
+                data,
+                get_position='[longitud, latitud]',
+                get_fill_color='color_rgb',
+                get_radius='size',
+                pickable=True,
+                auto_highlight=True
+            )
+
+            tooltip = {
+                "html": "<b>Latitud:</b> {latitud}<br><b>Longitud:</b> {longitud}<br><b>Cluster:</b> {Cluster}",
+                "style": {"color": "white"}
+            }
+
+            view_state = pdk.ViewState(
+                latitude=data['latitud'].mean(),
+                longitude=data['longitud'].mean(),
+                zoom=10,
+                pitch=50,
+            )
+
+            r = pdk.Deck(
+                layers=[layer],
+                initial_view_state=view_state,
+                tooltip=tooltip
+            )
+
+            st.pydeck_chart(r)
+
         else:
             st.write(f"El archivo debe contener las columnas: {', '.join(required_columns)}")
