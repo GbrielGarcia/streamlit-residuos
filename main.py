@@ -105,8 +105,8 @@ with tab3:
             view_state = pdk.ViewState(
                 latitude=data['latitud'].mean(),
                 longitude=data['longitud'].mean(),
-                zoom=10,
-                pitch=50,
+                zoom=13,
+                pitch=0,
             )
 
             r = pdk.Deck(
@@ -122,6 +122,7 @@ with tab3:
 
 # Markdown Pie de página
 st.markdown("""
+---
 Realizado por:
 - Maria Fernanda Dueñas Murillo
 - Roxana Mabel Toala Torres
