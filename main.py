@@ -119,3 +119,18 @@ with tab3:
 
         else:
             st.write(f"El archivo debe contener las columnas: {', '.join(required_columns)}")
+
+# Markdown Pie de página
+st.markdown("""
+Realizado por:
+Maria Fernanda Dueñas Murillo
+Roxana Mabel Toala Torres
+---
+Tecnologías Utilizadas:
+- Streamlit (UI, Despliegue)
+- Regresión Lineal [sklearn] (Modelo Machine Learning)
+- Pandas (Manejo y Procesamiento de datos)
+- Numpy (Genera datos aleatorios)
+- IO (Flujo de entrada y salida)
+- OS (Manejo del sistema operativo)
+""")
